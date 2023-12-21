@@ -1,7 +1,5 @@
 package dev.erika.api_movies.models;
 
-import java.time.Year;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
