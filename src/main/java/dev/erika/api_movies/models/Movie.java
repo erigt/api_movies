@@ -11,7 +11,6 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table (name = "movies")
-
 public class Movie {
   @Id
   @GeneratedValue (strategy = GenerationType.IDENTITY) @Column (name = "id_movie")
@@ -23,9 +22,8 @@ public class Movie {
 
   @ManyToOne
   @JoinColumn (name = "year_id", nullable = true)
-
   private Year creation_year;
-  public Object getCreation_year;
+  
 
 
   public void setId(long id) {
@@ -57,12 +55,6 @@ public class Movie {
   }
   public void setCreation_year(Year creation_year) {
     this.creation_year = creation_year;
-  }
-  public Object getGetCreation_year() {
-    return getCreation_year;
-  }
-  public void setGetCreation_year(Object getCreation_year) {
-    this.getCreation_year = getCreation_year;
   }
   
   
