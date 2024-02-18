@@ -2,7 +2,6 @@ package dev.erika.api_movies.controllers;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,14 +13,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.erika.api_movies.service.IGenericService;
 import dev.erika.api_movies.models.Movie;
 import dev.erika.api_movies.service.MovieService;
+import dev.erika.api_movies.messages.Message;
 
 @RestController
 @RequestMapping (path = "${api-endpoint}/movies")
 
 public class MovieController {
   MovieService service;
+  
 
   public MovieController(MovieService service) {
     this.service = service;
@@ -63,7 +65,15 @@ public class MovieController {
 
         service.delete(id);
 
-        return new ResponseEntity<>(HttpStatus.valueOf(204));
+        return ResponseEntity.status(204).body(delete);
     }
-  
+
+    @GetMapping(path = "/bytitle/{title}")
+    public ResponseEntity<Movie> showByTitle(@PathVariable("title") String title) throws Exception {
+
+    Movie movie = service.getByTitle(title);
+
+    return ResponseEntity.status(HttpStatusCode.valueOf(204)).body(movie);
+  }
+
 }
