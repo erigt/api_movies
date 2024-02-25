@@ -1,6 +1,6 @@
 package dev.erika.api_movies.models;
-
-import org.hibernate.mapping.Set;
+// import org.hibernate.mapping.Set;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,6 +16,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table (name = "movies")
 public class Movie {
+ 
   @Id
   @GeneratedValue (strategy = GenerationType.IDENTITY) @Column (name = "id_movie")
   private long id;
