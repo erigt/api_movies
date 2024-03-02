@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import dev.erika.api_movies.exceptions.MovieNotFoundException;
 import dev.erika.api_movies.models.Movie;
-import dev.erika.api_movies.messages.Message;
 
 @Service
 
@@ -49,17 +48,13 @@ public class MovieService implements IGenericService<Movie> {
     return updatedMovie;
   }
 
-  public Message delete(Long id) throws Exception {
+  public void delete(Long id) throws Exception {
         
   Movie movie = repository.findById(id).orElseThrow(() -> new MovieNotFoundException("Movie not found"));
 
   String movieName = movie.getTitle();
 
-  Message message = new Message();
-
-  message.setMessage(movieName + " is deleted from the movies table");
-
-  return message;
+  repository.delete(movie);
 }
 
 public Movie getByTitle (String title) throws Exception {

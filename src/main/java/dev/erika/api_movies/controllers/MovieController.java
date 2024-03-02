@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.erika.api_movies.service.IGenericService;
 import dev.erika.api_movies.models.Movie;
 import dev.erika.api_movies.service.MovieService;
-import dev.erika.api_movies.messages.Message;
+
 
 
 
@@ -64,11 +64,10 @@ public class MovieController {
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Message> remove(@PathVariable("id") Long id) throws Exception { 
+    public ResponseEntity<org.aspectj.bridge.Message> remove(@PathVariable("id") Long id) throws Exception { 
 
-        Message delete = service.delete(id);
-
-        return ResponseEntity.status(200).body(delete);
+        service.delete(id);
+          return ResponseEntity.status(200).build();
     }
 
     @GetMapping(path = "/bytitle/{title}")
